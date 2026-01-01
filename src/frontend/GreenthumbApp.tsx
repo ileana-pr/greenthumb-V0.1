@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Leaf, Bot, User, Sprout, TreePine, Flower, Wallet, Heart, DollarSign } from 'lucide-react';
+import { Send, Leaf, Bot, User, Sprout, TreePine, Flower, Wallet, Heart, DollarSign, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { usePrivy, useWallets, useCreateWallet, useFundWallet } from '@privy-io/react-auth';
 import type { UUID } from '@elizaos/core';
 
@@ -432,6 +433,9 @@ const GreenthumbApp: React.FC = () => {
       return part;
     });
   };
+  
+  // navigation hook
+  const navigate = useNavigate();
   
   // privy wallet hooks
   const { login, logout, authenticated, user } = usePrivy();
@@ -894,6 +898,34 @@ const GreenthumbApp: React.FC = () => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {/* Back button */}
+            <button
+              onClick={() => navigate('/')}
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(16, 185, 129, 0.3)',
+                borderRadius: '8px',
+                padding: '8px',
+                color: '#059669',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                e.currentTarget.style.borderColor = '#10b981';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+              }}
+              title="Back to Home"
+            >
+              <ArrowLeft size={20} />
+            </button>
+            
             {/* Logo */}
             <div 
               style={{
@@ -935,7 +967,7 @@ const GreenthumbApp: React.FC = () => {
             
             {/* Connection status and wallet */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-              {/* Connection status */}
+              {/* Agent connection status */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div 
                   style={{
@@ -952,7 +984,7 @@ const GreenthumbApp: React.FC = () => {
                     fontWeight: '500',
                   }}
                 >
-                  {isConnected ? 'Connected' : 'Disconnected'}
+                  {isConnected ? '🌱 GreenThumb Ready' : '🔴 Agent Offline'}
                 </span>
               </div>
 
