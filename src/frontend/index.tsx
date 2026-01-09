@@ -1,7 +1,7 @@
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import React from 'react';
-import App from './App';
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import React from "react";
+import App from "./App";
 
 // define the interface for the ELIZA_CONFIG
 interface ElizaConfig {
@@ -17,7 +17,7 @@ declare global {
 }
 
 // initialize the application
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 if (rootElement) {
   createRoot(rootElement).render(<App />);
 }
@@ -46,16 +46,16 @@ const PanelComponent: React.FC<PanelProps> = ({ agentId }) => {
 // export the panel configuration for integration with the agent UI
 export const panels: AgentPanel[] = [
   {
-    name: 'GreenThumb',
-    path: 'greenthumb',
+    name: "GreenThumb",
+    path: "greenthumb",
     component: PanelComponent,
-    icon: 'Leaf',
+    icon: "Leaf",
     public: true,
-    shortLabel: 'GreenThumb',
+    shortLabel: "GreenThumb",
   },
 ];
 
-export * from './utils';
+export * from "./utils";
 
 // Add proper typing for socket events
 // Socket interfaces moved to GreenthumbApp.tsx
