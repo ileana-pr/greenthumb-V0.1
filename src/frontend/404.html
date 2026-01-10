@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenthumb</title>
+  <script>
+    // GitHub Pages SPA redirect
+    // Redirects 404s to index.html with the path preserved in sessionStorage
+    const segment = 1; // Number of path segments to keep (for project pages: 1)
+    const path = window.location.pathname.split('/').slice(segment + 1).join('/');
+    const search = window.location.search;
+    sessionStorage.setItem('redirect', path + search);
+    window.location.replace(
+      window.location.origin + 
+      window.location.pathname.split('/').slice(0, segment + 1).join('/') + '/'
+    );
+  </script>
+</head>
+<body>
+  <noscript>
+    <meta http-equiv="refresh" content="0;URL='/'">
+  </noscript>
+</body>
+</html>
